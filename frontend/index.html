@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="./styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+</head>
+<body>
+    <div class="principal">
+    <div class="container">
+        <div id="follow" class="seguir">
+        </div>
+        <div id="music" class="music"></div>
+        </div>
+    </div>
+    <section class="section">
+        <form id="input">
+            <input type="text" id="artista" placeholder="Coloque o nome do artista desejado">
+            <button type="submit" class="btn" >Receber playlist</button>
+        </form>
+    </section>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    var div = document.getElementById('music');
+    var follow = document.getElementById('follow');
+    var form = document.querySelector('#input');
+    var input = document.getElementById('artista');
+    
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (input.value == '') {
+            return;
+        }
+        getPlaylist();
+    });
+   async function getPlaylist() {
+
+        const response = await axios.post('http://localhost:3333/', {artista: input.value});
+        div.innerHTML = '';
+        follow.innerHTML = '';
+        if (response.data.erro) {
+            alert(response.data.erro);
+            return;
+        }
+        var iframe2 = document.createElement('iframe');
+        iframe2.src = response.data.artist;       
+        iframe2.width = 300;
+        iframe2.height = 100;   
+        follow.appendChild(iframe2);
+        var iframe = document.createElement('iframe');
+        iframe.src = response.data.playlist;       
+        iframe.width = 300;
+        iframe.height = 380;   
+        iframe.allow = 'encrypted-media'
+        div.appendChild(iframe);
+        
+    }
+    
+</script>
+</html>
