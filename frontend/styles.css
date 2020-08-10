@@ -1,0 +1,51 @@
+* {
+    margin: 0 auto;
+    background-color: #cc66ff;
+}
+
+div.seguir {
+    width: 20%;
+    float: left;
+    margin-right: 200px;
+}
+
+div.music {
+    width: 20%;
+    height: 500px;
+}
+
+div.principal {
+    display:flex;
+    flex-direction: column
+}
+
+section {
+    width: 40%;
+}
+
+div.container {
+    flex-direction: row; 
+    display: flex; 
+    align-content: space-between;
+}
+
+button.btn {
+     height: 50px;
+     width: 200px; 
+     background-color: #7159c1;
+     color: white;
+     border-radius: 20px;
+     border: 0px;
+}
+
+button.btn:hover {
+    opacity: 0.8;
+}
+
+input {
+    width: 300px; 
+    height: 40px;
+    background-color: white;
+    color: black;
+    border-radius: 50px;
+}
